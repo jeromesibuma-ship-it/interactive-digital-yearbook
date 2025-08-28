@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Image slideshow container */
+        .slideshow-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure it stays in the background */
+            overflow: hidden;
+        }
+
+        /* Slide image styling */
+        .slideshow-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        /* Active slide opacity */
+        .slideshow-image.active {
+            opacity: 1;
+        }
+
+        /* Styles for slideshow navigation buttons */
+        /* These buttons are now directly in the body, so their positioning is relative to the viewport */
+        .slideshow-nav-button {
+            position: fixed; /* Use fixed to keep them in place relative to the viewport */
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 1rem;
+            border-radius: 9999px; /* Tailwind's rounded-full */
+            cursor: pointer;
+            z-index: 20; /* Ensure it's above other content like the main hero section (z-index: 10) */
+            transition: background-color 0.3s ease;
+            border: none; /* Remove default button border */
+        }
+
+        .slideshow-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .slideshow-nav-button.left {
+            left: 1rem;
+        }
+
+        .slideshow-nav-button.right {
+            right: 1rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-blue-950 text-gray-100 relative">
+
+    <!-- Image Slideshow Container -->
+    <div class="slideshow-container">
+        <!-- These are the sample images. You can replace them with your own. -->
+        <img src="https://scontent-sin11-1.xx.fbcdn.net/v/t39.30808-6/481903997_946825997630694_3763889304102072560_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFqFycUC6P7ZuDHUBRHFHMtoUxkP73e8HChTGQ_vd7wcB0FAA9MzKBi41TrjUpM84rDjd_F-937joA5h2W6lQRE&_nc_ohc=ILjOHahopSIQ7kNvwEERoUr&_nc_oc=AdliG8n4DvktsRDl4tm9jtjO8qzlB7ZLfoaEvzjkQ5wpFiceZH88m8L103x9Aa4W-so&_nc_zt=23&_nc_ht=scontent-sin11-1.xx&_nc_gid=KjEASkTQJIRuwMESgi4dpA&oh=00_AfWO8Q0YhBoFWPLM2O_AsIrjMQT_GR-Bf3PVSwFUEuecnw&oe=68B49E05" alt="Sample memory image 1" class="slideshow-image active">
+        <img src="https://scontent-sin11-2.xx.fbcdn.net/v/t39.30808-6/481785279_946967974283163_289389675018512860_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEeu_sEb9eWpSkHRvkJMW56XfPJhZgjBtpd88mFmCMG2vmSVUcD9oRj6ozuSIQDSuiYZlotME8yY5Gv_6auCW7a&_nc_ohc=J1p3nfwmuYgQ7kNvwGsYVmN&_nc_oc=Admth8fASixoZfTA6v9Ydu9kYvi1OHJU_DqOMnG0VMQyPyGRnmbtJ9rS2xIrwbzmDXI&_nc_zt=23&_nc_ht=scontent-sin11-2.xx&_nc_gid=R9E4lPPqx7o73qnbPqqHyw&oh=00_AfV2eHU_TACjKy7Y4Eh-a3ABRdaOQp8pRiZJyOINYUR8RQ&oe=68B4C374" alt="Sample memory image 2" class="slideshow-image">
+        <img src="https://scontent-sin6-3.xx.fbcdn.net/v/t39.30808-6/482324217_946967824283178_4019409260481328988_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFtbbtIxfqG8XDT4I_0C4J3ggEDaG5R6v6CAQNoblHq_iDmsuC53tYHVu40imlsCRw_A7JkSrIzkRTtZTQ184Xp&_nc_ohc=4baVErqvUgoQ7kNvwFAA2U_&_nc_oc=AdmAf5twcEgJ8zk_H4Bh4FeneY-CmGnwKJmZRV5Ar_hQZaDlBY8H0lg6wq0cK0FOMDI&_nc_zt=23&_nc_ht=scontent-sin6-3.xx&_nc_gid=wG3uHej9Vw4ey3Nl3qC6GA&oh=00_AfVawtF3_JxkHFxgHZNc-BtoEsR3ZSm2xWe3mgYbXDEdsg&oe=68B4BB4D" alt="Sample memory image 3" class="slideshow-image">
+    </div>
+
+    <!-- Slideshow Navigation Buttons - Moved outside slideshow-container for clickability -->
+    <button id="prev-slide" class="slideshow-nav-button left">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button id="next-slide" class="slideshow-nav-button right">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-blue-900 shadow-lg p-6 relative z-10">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <!-- Logo and Title -->
+            <a href="#" class="flex items-center space-x-3 mb-4 sm:mb-0">
+                <img src="https://neust.edu.ph/wp-content/uploads/2020/06/neust_logo.png" alt="NEUST Logo" class="h-10 w-auto">
+                <span class="text-xl font-bold text-white">NEUST - Digital Yearbook</span>
+            </a>
+            <!-- Navigation Links -->
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-gray-300 hover:text-sky-300 transition-colors duration-300 font-medium">Home</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-sky-300 transition-colors duration-300 font-medium">About</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-sky-300 transition-colors duration-300 font-medium">Services</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-sky-300 transition-colors duration-300 font-medium">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content (Hero Section) -->
+    <main class="flex-grow flex items-center justify-center p-8 relative z-10 bg-black bg-opacity-50">
+        <div class="text-center max-w-2xl">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                Welcome to Our Digital Yearbook
+            </h1>
+            <p class="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-8">
+                Relive memories and connect with your batchmates.
+            </p>
+            <a href="options.html" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-colors duration-300">
+                View Memories
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 shadow-inner p-6 relative z-10">
+        <div class="container mx-auto text-center text-gray-400 text-sm">
+            <p>&copy; 2025 NEUST. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="hover:text-white transition-colors duration-300">Facebook</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Twitter</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            const images = document.querySelectorAll('.slideshow-image');
+            let currentImage = 0;
+            let slideshowInterval; // Variable to store the interval ID
+
+            if (images.length > 0) {
+                images[currentImage].classList.add('active');
+            }
+
+            function showImage(index) {
+                if (images.length === 0) return;
+
+                // Hide current active image
+                images[currentImage].classList.remove('active');
+
+                // Update currentImage and show new image
+                currentImage = index;
+                images[currentImage].classList.add('active');
+            }
+
+            function showNextImage() {
+                const nextImage = (currentImage + 1) % images.length;
+                showImage(nextImage);
+            }
+
+            function showPreviousImage() {
+                const prevImage = (currentImage - 1 + images.length) % images.length;
+                showImage(prevImage);
+            }
+
+            // Start automatic slideshow
+            slideshowInterval = setInterval(showNextImage, 5000);
+
+            // Manual toggle buttons
+            const prevButton = document.getElementById('prev-slide');
+            const nextButton = document.getElementById('next-slide');
+
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', () => {
+                    clearInterval(slideshowInterval); // Stop automatic slideshow on manual interaction
+                    showPreviousImage();
+                    slideshowInterval = setInterval(showNextImage, 5000); // Restart automatic slideshow
+                });
+
+                nextButton.addEventListener('click', () => {
+                    clearInterval(slideshowInterval); // Stop automatic slideshow on manual interaction
+                    showNextImage();
+                    slideshowInterval = setInterval(showNextImage, 5000); // Restart automatic slideshow
+                });
+            }
+        };
+    </script>
+
+</body>
+</html>
